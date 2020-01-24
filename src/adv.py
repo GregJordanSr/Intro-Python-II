@@ -2,6 +2,7 @@ from room import Room
 from player import Player 
 
 # Declare all the rooms
+# Below are
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -26,10 +27,13 @@ earlier adventurers. The only exit is to the south."""),
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
+
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
+
 room['overlook'].s_to = room['foyer']
+
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
@@ -39,18 +43,27 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-ebo = Player("f{self.current_room}", Room("outside", room["outside"]) )
+ebo = Player("Qadir", current_room = room["outside"])
 # Write a loop that:
-#
-# * Prints the current room name
-print(ebo.room.name)
-# * Prints the current description (the textwrap module might be useful here).
-print(ebo.room.description)
-
 # * Waits for user input and decides what to do.
-choice = input("Enter n for north, s for south, e for east, w for west")
+
+
+while True:
+    choice = input("Welcome " {ebo.name} " \n You were brave enough to take on this challenge and traverse my layer\n Choose your path and enter [N]orth, [S]outh, [E]ast, [W]est or [Q]uit: ")
+
+    if choice == "q":
+        break
+    else:
+    
+    if ebo.current_room.n_to is not None:
+        print(f"before the move: {ebo.current_room}" + "\n") 
+        ebo.move(new_room = ebo.current_room.n_to) 
+        print(f"After the move: {ebo.current_room}")
+
+    else:
+        print(f"You have reached deadend, choose another direction")
+
+# * Prints the current room name
 #
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+# * Prints the current description (the textwrap module might be useful here).
+
